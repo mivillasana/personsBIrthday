@@ -12,11 +12,11 @@ struct birthday {
 	string name;
 	struct list_head list;
 };
+static LIST_HEAD(birthday_list);
 /* This function is called when the module is loaded. */
 int init_persons(void)
 {
     printk(KERN_INFO "Loading Person 1\n");
-    static LIST_HEAD(birthday_list);
 	struct birthday *person;
 
 	person = kmalloc(sizeof(*person),GFP_KERNEL);

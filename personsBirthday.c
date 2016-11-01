@@ -4,6 +4,8 @@
 #include <linux/types.h>
 #include <linux/random.h>
 #include <linux/string.h>
+#include <linux/list.h>  //for struct
+#include <linux/slab.h>  //sizeof
 
 struct birthday {
 	int day;

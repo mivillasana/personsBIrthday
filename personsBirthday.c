@@ -39,38 +39,38 @@ int person_init(void)
 		ptr = kmalloc(sizeof(*ptr),GFP_KERNEL);
 		ptr->name = name;
 		get_random_bytes(&day, 1);
-	    ptr->day = day % 31;
-	    if(ptr->day < 0)
-	        ptr->day = ptr->day * -1;
+		ptr->day = day % 31;
+		if(ptr->day < 0)
+			ptr->day = ptr->day * -1;
 		if(ptr->day == 0)
-	    	ptr->day = ptr->day + 1;
-	    get_random_bytes(&month, 1);
-	    ptr->month = month % 12;
+			ptr->day = ptr->day + 1;
+		get_random_bytes(&month, 1);
+		ptr->month = month % 12;
 
-	    if(ptr->month < 0)
-	        ptr->month = ptr->month * -1;
-	    if(ptr->month == 0)
-	    	ptr->month = ptr->month + 1;
+		if(ptr->month < 0)
+			ptr->month = ptr->month * -1;
+		if(ptr->month == 0)
+			ptr->month = ptr->month + 1;
 
-	    get_random_bytes(&year, 1);
-	    ptr->year = (year % 99);
+		get_random_bytes(&year, 1);
+		ptr->year = (year % 99);
 
-	    if(ptr->year < 0)
-	        ptr->year = ptr->year * -1;
-	    if(ptr->year < 50)
-	    	ptr->year = ptr->year + 50;
-	    list_add(&(ptr->list), &person->list);
-	    i = i +1;
-    }
+		if(ptr->year < 0)
+			ptr->year = ptr->year * -1;
+		if(ptr->year < 50)
+			ptr->year = ptr->year + 50;
+		list_add(&(ptr->list), &person->list);
+		i = i +1;
+	}
 	i=0;
 	printk(KERN_INFO "Beginning to traverse the list:\n");
-    list_for_each(pos, &person->list){
-        tmp = list_entry(pos, struct birthday, list);
-        i = i+1;
-        printk("%s %d birthday is %d/%d/%d\n",tmp->name,i,tmp->month, tmp->day, tmp->year);
-    }
+	list_for_each(pos, &person->list){
+		tmp = list_entry(pos, struct birthday, list);
+		i = i+1;
+		printk("%s %d birthday is %d/%d/%d\n",tmp->name,i,tmp->month, tmp->day, tmp->year);
+	}
 
-    return 0;
+	return 0;
 }
 
 /* This function is called when the module is removed. */
